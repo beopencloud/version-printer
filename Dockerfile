@@ -1,19 +1,16 @@
-FROM node:14
-
-# Create app directory
-WORKDIR /usr/src/app
-
-# Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-# where available (npm@5+)
-COPY package*.json ./
-
+#initialise le build de l'image avec node
+FROM node:14.15-alpine AS build
+# ajoute des metadata à l'image
+LABEL maintainer="Adama Diouf"="adamaniang@beopenit.com"
+#Répertoire de travail
+WORKDIR usr/src/app
+COPY package.json package-lock.json ./
 RUN npm install
-# If you are building your code for production
-# RUN npm ci --only=production
-
-# Bundle app source
 COPY . .
 
-EXPOSE 8080
-CMD [ "node", "app.js" ]
+RUN npm run build
+#appeler le serveur web nginx pour afficher le resultat
+FROM nginx:latest
+#on copie les elements de l'ancienne image pour l'afficher dans le serveur
+COPY --from=build usr/src/app/dist/ab-testing /usr/share/nginx/html
+
