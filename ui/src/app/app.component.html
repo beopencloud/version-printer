@@ -327,22 +327,29 @@
 
 <div class="content" role="main">
   <form (ngSubmit)="saveBlog(f)" #f="ngForm">
-    <div class="row">
-      <div class="col">
+    <div class="row" *ngFor="let h of [].constructor(cpt)">
+      <div class="col" >
         <input type="text" class="form-control" placeholder="Entrer la clé"   ngModel name="key"  >
       </div>
       <div class="col">
         <input type="text" class="form-control" placeholder="Entrer la valeur" name="valeur" ngModel>
       </div>
-      <div class="col">        
+     <!-- <div class="col">        
       <button type="submit" class="btn btn-primary" >Submit</button>
-      </div>
-      <canvas #canvas width="200" height="20"></canvas>
+      
+      <button type="submit" (click)="addHeader()" style="margin-left: 50px;" class="btn btn-success" name="add">Add header</button>
+
+      </div>-->
+     
+     <!-- <canvas #canvas width="200" height="20"></canvas>
 
       <h1 style="font-size: 300px; margin-left: 90px;" [ngStyle]="{'color': data.couleur ? data.couleur : '#000'}">{{data.version}}</h1>
-
+-->
     </div>
   </form>
+  <button type="submit" (click)="addHeader()" style="margin-left: 50px;" class="btn btn-success" name="add">Add header</button>
+  <button type="submit" class="btn btn-primary" (click)="saveBlog(f)" >Submit</button>
+
 </div>
 
   <!-- Highlight Card 

@@ -2,6 +2,7 @@ import { Component ,Input,OnInit} from '@angular/core';
 import {ApiServiceService} from '../api-service.service';
 import { Router } from "@angular/router";
 import { Data } from "./app.model";
+import { NgForm } from '@angular/forms';
 
 
 @Component({
@@ -14,6 +15,8 @@ import { Data } from "./app.model";
 export class AppComponent implements OnInit {
   
   public data: Data=new Data;
+  headers :any;
+  cpt=1;
   
 
   key="adama" 
@@ -24,6 +27,12 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
   }
+addHeader(){
+  //this.headers.push({key:"", value:""});
+  this.cpt++;
+  //console.log(this.headers.length);
+}
+
 
   saveBlog(f: any) {
     let blog = {      key: f.value.key,      valeur: f.value.valeur   };
