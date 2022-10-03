@@ -4,8 +4,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule,FormBuilder } from '@angular/forms';
 
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+//import { FormsModule, ReactiveFormsModule, FormGroup } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -13,10 +14,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
   ],
   imports: [
-    FormsModule,
+    
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

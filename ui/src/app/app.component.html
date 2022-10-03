@@ -326,13 +326,13 @@
 </div>
 
 <div class="content" role="main">
-  <form (ngSubmit)="saveBlog(f)" #f="ngForm">
-    <div class="row" *ngFor="let h of [].constructor(cpt)">
+  <form  [formGroup]="profileForm">
+    <div class="row" *ngFor="let h of header_fields;let indexOfelement=index;">
       <div class="col" >
-        <input type="text" class="form-control" placeholder="Entrer la clé"   ngModel name="key"  >
+        <input type="text" class="form-control" placeholder="Entrer la clé"    [formControlName]="'key'+h" >
       </div>
       <div class="col">
-        <input type="text" class="form-control" placeholder="Entrer la valeur" name="valeur" ngModel>
+        <input type="text" class="form-control" placeholder="Entrer la valeur"  [formControlName]="'value'+h">
       </div>
      <!-- <div class="col">        
       <button type="submit" class="btn btn-primary" >Submit</button>
@@ -341,15 +341,15 @@
 
       </div>-->
      
-     <!-- <canvas #canvas width="200" height="20"></canvas>
+      <canvas #canvas width="200" height="20"></canvas>
 
       <h1 style="font-size: 300px; margin-left: 90px;" [ngStyle]="{'color': data.couleur ? data.couleur : '#000'}">{{data.version}}</h1>
--->
+
     </div>
   </form>
+  <div class="col" ></div>
   <button type="submit" (click)="addHeader()" style="margin-left: 50px;" class="btn btn-success" name="add">Add header</button>
-  <button type="submit" class="btn btn-primary" (click)="saveBlog(f)" >Submit</button>
-
+  <button style="margin: 3px;margin-left: 19px;" type="submit" class="btn btn-primary" (click)="saveBlog(profileForm)" >Submit</button>
 </div>
 
   <!-- Highlight Card 

@@ -2,8 +2,8 @@ import { Component ,Input,OnInit} from '@angular/core';
 import {ApiServiceService} from '../api-service.service';
 import { Router } from "@angular/router";
 import { Data } from "./app.model";
-import { NgForm } from '@angular/forms';
 
+import { FormGroup, FormControl, NgForm, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -13,31 +13,57 @@ import { NgForm } from '@angular/forms';
 
 
 export class AppComponent implements OnInit {
+ profileForm!: FormGroup;
+// profileForm = new FormGroup({
+//   key:new FormControl(),
+//   valeur:new FormControl()
+
+// });
   
   public data: Data=new Data;
   headers :any;
-  cpt=1;
+  header_fields: number[]=[];
   
 
-  key="adama" 
-  value="niang" 
+ 
   
 
-  constructor(private service: ApiServiceService, private router: Router) { }
+  constructor(private service: ApiServiceService, private router: Router,private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.initForm();
   }
 addHeader(){
   //this.headers.push({key:"", value:""});
-  this.cpt++;
-  //console.log(this.headers.length);
+  const t = Date.now();
+  this.profileForm.addControl("key"+t, new FormControl('', Validators.required));
+  this.profileForm.addControl("value"+t, new FormControl('', Validators.required));
+
+  this.header_fields.push(t)
 }
 
 
-  saveBlog(f: any) {
-    let blog = {      key: f.value.key,      valeur: f.value.valeur   };
-    console.log(blog)
-    this.service.postBlog(blog).subscribe({
+initForm(){
+  this.profileForm = new FormGroup({
+    key:new FormControl("''"),
+    valeur:new FormControl("")
+  });
+}
+
+  saveBlog(profileForm: any) {
+    var headers: { key: any; value: any; }[] = [];
+    this.header_fields.forEach(element => {
+      var key = this.profileForm.get("key"+element)?.value
+      var value = this.profileForm.get("value"+element)?.value
+      headers.push({
+        key: key,
+        value:value
+      })
+    console.log(headers)
+    });
+    // let blog = {      header: profileForm.value  };
+    
+    this.service.postBlog(headers).subscribe({
       error: (err) => { console.error(err) },
       next: (data) => {
         console.log(data);
