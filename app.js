@@ -33,11 +33,10 @@ app.get('/version', (req, res) =>{
     res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
     res.setHeader('Access-Control-Allow-Headers', '*');
 
-    const responseData ={
-      version: "v4.0.0",
-      couleur:"red"
-      
-    }
+    // const responseData ={
+    //   version: "v5.0.0",
+    //   couleur:"blue"
+    // }
     res.send({version: "v4.0.0", couleur:"red"});
 });
 app.listen(8085);
