@@ -341,12 +341,13 @@
 
       </div>-->
      
-      <canvas #canvas width="200" height="20"></canvas>
+      
+    </div>
+  </form>
+  <canvas #canvas width="200" height="20"></canvas>
 
       <h1 style="font-size: 300px; margin-left: 90px;" [ngStyle]="{'color': data.couleur ? data.couleur : '#000'}">{{data.version}}</h1>
 
-    </div>
-  </form>
   <div class="col" ></div>
   <button type="submit" (click)="addHeader()" style="margin-left: 50px;" class="btn btn-success" name="add">Add header</button>
   <button style="margin: 3px;margin-left: 19px;" type="submit" class="btn btn-primary" (click)="saveBlog(profileForm)" >Submit</button>
