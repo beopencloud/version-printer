@@ -37,6 +37,6 @@ app.get('/version', (req, res) =>{
     //   version: "v5.0.0",
     //   couleur:"blue"
     // }
-    res.send({version: "v5.0.0", couleur:"blue"});
+    res.send({version: "v5.0.0", couleur:"blueeee"});
 });
 app.listen(8085);
